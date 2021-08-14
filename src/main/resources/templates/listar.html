@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+ <html lang="pt-br">
+<head>
+<title>Olá !</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+ 	 <h1>Clientes</h1>
+ 	 <table border="1">
+ 	 	<thead>
+ 	 		<tr>
+ 	 			<th>Nome</th>
+ 	 			<th>DataNascimento</th>
+ 	 			<th>Alterar</th>
+ 	 			<th>Excluir</th>
+ 	 		</tr>
+ 	 	</thead>
+ 	 	<tbody>
+ 	 		<tr th:each="cliente : ${clientes}">
+ 	 			<td th:text="${cliente.nome}">nome</td>
+ 	 			<td th:text="${cliente.dataNascimento}">DataNascimento</td>
+ 	 			<td><a th:href="${'/clientes/antesAlterar?id=' + cliente.id}">Alterar</a></td>
+ 	 			<td><a th:href="${'/clientes/excluir?id=' + cliente.id}">Excluir</a></td>
+ 	 		</tr>
+ 	 	</tbody>
+ 	 </table>
+ 	 <hr />
+ 	 <form action="/clientes/inserir" method="POST" th:object="${clienteEmEdicao}">
+ 	 	<input type="hidden" name="id" th:field="*{id}"/>
+ 	 	<label for="nome">Nome:</label><input type="text" name="nome" th:field="*{nome}"/>
+ 	 	<label for="dataNascimento">Data Nascimento:</label><input type="text" name="dataNascimento" th:field="*{dataNascimento}"/>
+ 	 	<button type="submit">Salvar</button>
+ 	 </form>
+</body>
+</html>
